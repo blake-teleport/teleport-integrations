@@ -1,0 +1,14 @@
+[Unit]
+Description=ServiceNowApprovalService
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=sh /usr/local/bin/servicenow.sh
+ExecReload=/bin/kill -HUP $MAINPID
+PIDFile=/run/servicenow.pid
+LimitNOFILE=8192
+
+[Install]
+WantedBy=multi-user.target
